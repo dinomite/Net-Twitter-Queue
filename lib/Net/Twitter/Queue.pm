@@ -11,10 +11,11 @@ Net::Twitter::Queue - Tweet from a queue of messages
 
     # Pass information or use config.yaml
     my $twitQueue = Net::Twitter::Queue->new(
-        consumer_key: inRc7ruZNNpuUo6CdYK3iA
-        consumer_secret: EH9jnMVXmMuw6aMBcunqAm6otVXL2RCzK8XQhgR50ac
-        access_token: 108539662-TP0bVhpCNOCB8S1sgJmQbYzMO7yV4fNl0mNoHVGy
-        access_token_secret: 1jh8f96JoFHx7qxQIPU7oZHSJ6K2hbmOQJzqeM4rQ
+        tweets_file: mah_tweets.yaml
+        consumer_key: <consumer_key>
+        consumer_secret: <consumer_secret>
+        access_token: <access_token>
+        access_token_secret: <access_token_secret>
     );
     # 
     $twitQueue->tweet();
@@ -25,9 +26,11 @@ use Carp;
 use Net::Twitter 3.12000;
 use YAML::Any 0.70 qw(LoadFile DumpFile);
 
-use Data::Dumper;
+=head1 ATTRIBUTES
 
-=item
+=over 1
+
+=item configFile
 
 The configuration file.
 
@@ -36,6 +39,8 @@ The configuration file.
     consumer_secret: <consumer_secret>
     access_token: <access_token>
     access_token_secret: <access_token_secret>
+
+Default: config.yaml
 
 =cut
 
@@ -52,7 +57,7 @@ has 'config' => (
     builder => '_build_config'
 );
 
-=item
+=item tweetsFile
 
 A file full of tweets
 
@@ -60,6 +65,8 @@ A file full of tweets
     - Inane location update via @FourSquare!
     - Eating a sandwich
     - Poopin'
+
+Default: tweets.yaml; change in config.yaml
 
 =cut
 
@@ -113,6 +120,10 @@ has 'nt' => (
     lazy    => 1,
     builder => '_build_nt',
 );
+
+=back
+
+=cut
 
 sub _build_nt {
     my $self = shift;
@@ -176,6 +187,14 @@ sub hasConnectionInfo {
            $self->has_access_token &&
            $self->has_access_token_secret;
 }
+
+=head1 METHODS
+
+=head2 tweet()
+
+Remote the top tweet from the tweet_file and tweet it.
+
+=cut
 
 sub tweet {
     my $self = shift;
