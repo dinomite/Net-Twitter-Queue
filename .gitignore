@@ -1,0 +1,6 @@
+blib
+Build
+MYMETA.yml
+Net-Twitter-Queue-*
+_build
+.*.sw*
