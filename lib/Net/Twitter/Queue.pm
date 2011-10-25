@@ -9,6 +9,10 @@ Net::Twitter::Queue - Tweet from a queue of messages
 
 =head1 SYNOPSIS
 
+Create a Net::Twitter::Queue passing it the tweets yaml and Twitter OAuth
+information (or specify these in a config file).  Each time L<tweet()|/tweet>
+is called, the top entry in the tweets file is removed and emitted.
+
     # Pass information or use config.yaml
     my $twitQueue = Net::Twitter::Queue->new(
         tweets_file: mah_tweets.yaml
@@ -17,9 +21,14 @@ Net::Twitter::Queue - Tweet from a queue of messages
         access_token: <access_token>
         access_token_secret: <access_token_secret>
     );
-    # 
     $twitQueue->tweet();
 
+I use Net::Twitter::Queue to back Twitter accounts that I don't want to
+handle manually.  I have directory, ~/twitter/<name> for each account
+containing a config.yaml and tweets.yaml.  A cron line then invokes
+Net::Twitter::Queue each day to post a tweet:
+
+    0 8 * * * cd /home/dinomite/twitter/dailywub; perl -MNet::Twitter::Queue -e '$q = Net::Twitter::Queue->new(); $q->tweet();'
 =cut
 
 use Carp;
