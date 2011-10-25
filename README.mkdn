@@ -29,7 +29,7 @@ Net::Twitter::Queue each day to post a tweet:
 
 - configFile
 
-The configuration file.
+The configuration file (default: config.yaml).
 
     # config.yaml
     consumer_key: <consumer_key>
@@ -37,18 +37,14 @@ The configuration file.
     access_token: <access_token>
     access_token_secret: <access_token_secret>
 
-Default: config.yaml
-
 - tweetsFile
 
-A file full of tweets
+A file full of tweets (default: tweets.yaml; set in config.yaml)
 
     # tweets.yaml
     - Inane location update via @FourSquare!
     - Eating a sandwich
     - Poopin'
-
-Default: tweets.yaml; change in config.yaml
 
 # METHODS
 
