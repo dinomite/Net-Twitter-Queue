@@ -138,7 +138,7 @@ sub _build_nt {
     my $self = shift;
 
     # If connection information wasn't set, try to read the config
-    if (!$self->hasConnectionInfo) {
+    if (!$self->_hasConnectionInfo) {
         # See if the config has information
         if (!exists $self->config->{consumer_key} ||
             !exists $self->config->{consumer_secret} ||
@@ -153,7 +153,7 @@ sub _build_nt {
         $self->access_token($self->config->{access_token});
         $self->access_token_secret($self->config->{access_token_secret});
     }
-    croak "No connection information available" if (!$self->hasConnectionInfo);
+    croak "No connection information available" if (!$self->_hasConnectionInfo);
 
     my $nt = Net::Twitter->new(
         traits  => [qw/OAuth API::REST/],
@@ -189,7 +189,7 @@ sub _build_tweets {
     return $tweets;
 }
 
-sub hasConnectionInfo {
+sub _hasConnectionInfo {
     my $self = shift;
     return $self->has_consumer_key &&
            $self->has_consumer_secret &&
