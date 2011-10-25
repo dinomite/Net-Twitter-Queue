@@ -38,19 +38,17 @@ use YAML::Any 0.70 qw(LoadFile DumpFile);
 
 =head1 ATTRIBUTES
 
-=over 1
+=over 4
 
 =item configFile
 
-The configuration file.
+The configuration file (default: config.yaml).
 
     # config.yaml
     consumer_key: <consumer_key>
     consumer_secret: <consumer_secret>
     access_token: <access_token>
     access_token_secret: <access_token_secret>
-
-Default: config.yaml
 
 =cut
 
@@ -69,14 +67,12 @@ has 'config' => (
 
 =item tweetsFile
 
-A file full of tweets
+A file full of tweets (default: tweets.yaml; set in config.yaml)
 
     # tweets.yaml
     - Inane location update via @FourSquare!
     - Eating a sandwich
     - Poopin'
-
-Default: tweets.yaml; change in config.yaml
 
 =cut
 
