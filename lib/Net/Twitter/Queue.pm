@@ -29,6 +29,7 @@ containing a config.yaml and tweets.yaml.  A cron line then invokes
 Net::Twitter::Queue each day to post a tweet:
 
     0 8 * * * cd /home/dinomite/twitter/dailywub; perl -MNet::Twitter::Queue -e '$q = Net::Twitter::Queue->new(); $q->tweet();'
+
 =cut
 
 use Carp;
