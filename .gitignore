@@ -3,4 +3,5 @@ Build
 MYMETA.yml
 Net-Twitter-Queue-*
 _build
+.build
 .*.sw*
