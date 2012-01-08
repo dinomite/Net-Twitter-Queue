@@ -182,6 +182,7 @@ sub _build_tweetsFile {
 sub _build_tweets {
     my $self = shift;
 
+    # Helpfully explodes if the YAML can't be parsed
     my $tweets = LoadFile($self->tweetsFile);
     return $tweets;
 }
