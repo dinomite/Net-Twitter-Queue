@@ -2,6 +2,7 @@ use strict;
 use warnings;
 package Net::Twitter::Queue;
 use Moose;
+use Try::Tiny;
 
 =head1 NAME
 
@@ -207,12 +208,21 @@ sub tweet {
     my $self = shift;
 
     my $tweet = shift @{$self->tweets};
-    my $result = $self->nt->update($tweet);
+    unless (defined $tweet) {
+        croak "No tweet found in " . $self->tweetsFile;
+    }
+
+    my $result;
+    try {
+        $result = $self->nt->update($tweet);
+    } catch {
+        carp "Unable to send tweet: $_";
+    };
 
     if ($result) {
         DumpFile($self->tweetsFile, \@{$self->tweets});
     } else {
-        carp "Tweeting didn't go well...";
+        carp "Tweeting didn't go well; " . $self->tweetsFile . " not altered.";
     }
 }
 
