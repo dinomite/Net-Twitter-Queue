@@ -1,6 +1,7 @@
 use strict;
 use warnings;
 package Net::Twitter::Queue;
+
 use Moose;
 use Try::Tiny;
 
@@ -34,7 +35,7 @@ Net::Twitter::Queue each day to post a tweet:
 =cut
 
 use Carp;
-use Net::Twitter 3.12000;
+use Net::Twitter 4.01005;
 use YAML::Any 0.70 qw(LoadFile DumpFile);
 
 =head1 ATTRIBUTES
@@ -159,6 +160,7 @@ sub _build_nt {
         consumer_secret     => $self->consumer_secret,
         access_token        => $self->access_token,
         access_token_secret => $self->access_token_secret,
+        ssl                 => 1,
     );
 
     return $nt;
