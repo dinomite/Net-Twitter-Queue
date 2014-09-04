@@ -1,4 +1,5 @@
 {{$NEXT}}
+    Use latest Net::Twitter (v4.01005) for SSL support
 
 0.2       2012-03-18 21:49:16 EST5EDT
 
