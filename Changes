@@ -1,4 +1,6 @@
 {{$NEXT}}
+
+0.3       2014-09-04 12:52:41-04:00 America/New_York
     Use latest Net::Twitter (v4.01005) for SSL support
 
 0.2       2012-03-18 21:49:16 EST5EDT
