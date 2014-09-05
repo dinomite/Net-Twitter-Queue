@@ -155,7 +155,7 @@ sub _build_nt {
     croak "No connection information available" if (!$self->_hasConnectionInfo);
 
     my $nt = Net::Twitter->new(
-        traits  => [qw/OAuth API::REST/],
+        traits  => [qw/OAuth API::RESTv1_1/],
         consumer_key        => $self->consumer_key,
         consumer_secret     => $self->consumer_secret,
         access_token        => $self->access_token,
